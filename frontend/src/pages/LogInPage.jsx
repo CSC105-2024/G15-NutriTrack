@@ -32,7 +32,7 @@ const LogInPage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = (data) => {
-    navigate("/");
+    navigate("/dashboard");
   };
 
   return (
