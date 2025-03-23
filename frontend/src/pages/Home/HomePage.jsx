@@ -5,8 +5,10 @@ import Testimonials from "./sections/Testimonials";
 import CTASection from "./sections/CTASection";
 import Footer from "./sections/Footer";
 import Features from "./sections/Features";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 
 const HomePage = () => {
+  useDocumentTitle("Home");
   // Create refs for each section
   const heroRef = useRef(null);
   const featuresRef = useRef(null);

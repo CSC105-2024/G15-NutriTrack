@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "./Button";
-import NavList from "./NavList";
+import NavItem from "./NavItem";
 import { Link } from "react-router-dom";
 
 const Navbar = ({ sectionRefs }) => {
@@ -8,6 +8,12 @@ const Navbar = ({ sectionRefs }) => {
   const scrollToSection = (ref) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const navItems = [
+    { text: "Home", onClick: () => scrollToSection(sectionRefs.hero) },
+    { text: "Features", onClick: () => scrollToSection(sectionRefs.features) },
+    { text: "Testimonials", onClick: () => scrollToSection(sectionRefs.testimonials) },
+  ];
 
   return (
     <header className="flex justify-between items-center bg-[#E8F5E9] h-24 px-4 sm:px-8 lg:px-12 w-full shadow-md z-50 sticky top-0">
@@ -30,19 +36,15 @@ const Navbar = ({ sectionRefs }) => {
       {/* Desktop Navigation */}
       <nav className="hidden lg:block">
         <ul className="flex items-center gap-8 text-lg font-medium">
-          <NavList
-            text="Home"
-            onClick={() => scrollToSection(sectionRefs.hero)}
-          />
-          <NavList
-            text="Features"
-            onClick={() => scrollToSection(sectionRefs.features)}
-          />
-          <NavList
-            text="Testimonials"
-            onClick={() => scrollToSection(sectionRefs.testimonials)}
-          />
-
+          {navItems.map((item, index) => (
+            <li key={index}>
+              <NavItem
+                text={item.text}
+                onClick={item.onClick}
+                variant="default"
+              />
+            </li>
+          ))}
           <li>
             <Link to="/signup">
               <Button className="w-full" text="Sign Up" />

@@ -8,9 +8,9 @@ import {
   faSignOut,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { useSidebar } from "../../../providers/SidebarContext";
-import SideNavList from "./../../../components/SideNavList";
-import ThemeToggle from "../../../components/ThemeToggle";
+import { useSidebar } from "../providers/SidebarContext";
+import NavItem from "./NavItem";
+import ThemeToggle from "./ThemeToggle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 
@@ -63,10 +63,10 @@ const DashboardSidebar = () => {
         </div>
 
         <ul className={`flex flex-col gap-4 p-2 w-full`}>
-          <SideNavList text="Home" icon={faHome} path="/dashboard" />
-          <SideNavList text="Add Food" icon={faPlus} path="/addfood" />
-          <SideNavList text="Database" icon={faDatabase} path="/database" />
-          <SideNavList text="Profile" icon={faUser} path="/profile" />
+          <NavItem text="Home" icon={faHome} path="/dashboard" variant="sidebar" />
+          <NavItem text="Add Food" icon={faPlus} path="/addfood" variant="sidebar" />
+          <NavItem text="Database" icon={faDatabase} path="/database" variant="sidebar" />
+          <NavItem text="Profile" icon={faUser} path="/profile" variant="sidebar" />
         </ul>
 
         <div className="flex justify-center py-2">
@@ -75,12 +75,16 @@ const DashboardSidebar = () => {
 
         <div className="flex-grow"></div>
 
-        <SideNavList
+        <div className="p-2">
+
+        <NavItem
           text="Sign Out"
           icon={faSignOut}
           path="/"
+          variant="sidebar"
           className="mb-16"
         />
+        </div>
       </nav>
     </aside>
   );

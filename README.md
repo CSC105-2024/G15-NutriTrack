@@ -23,7 +23,7 @@ NutriTrack is a diet planning web app that helps users manage meals, and track n
 1. **Clone the repository:**
 
    ```sh
-   git clone https://github.com/NutriTrack-CS25/NutriTrack.git
+   git clone https://github.com/CSC105-2024/G15-NutriTrack.git
    cd NutriTrack
    ```
 
@@ -50,16 +50,12 @@ NutriTrack is a diet planning web app that helps users manage meals, and track n
 To contribute:
 
 1. **Fork the repository**
-2. **Create a feature branch** (`feature-branch-name`)
+2. **Create a feature branch** (`feature-branch-name`) Or **A page branch** (`page-branch-name`)
 3. **Make your changes and commit** (`git commit -m "Your message"`)
 4. **Push the changes** (`git push origin feature-branch-name`)
 5. **Open a Pull Request (PR)** to the `dev` branch
 
 Please read our [CONTRIBUTING.md](CONTRIBUTING.md) file for detailed guidelines.
-
-## 🔐 Security
-
-We use **CodeQL** for automated security scanning. If you find a vulnerability, please report it.
 
 ## 📜 License
 
