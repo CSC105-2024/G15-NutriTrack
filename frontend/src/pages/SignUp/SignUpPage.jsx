@@ -11,8 +11,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 
 const SignUpPage = () => {
+  useDocumentTitle("Register");
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const signupSchema = z.object({
