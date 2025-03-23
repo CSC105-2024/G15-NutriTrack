@@ -8,7 +8,7 @@ const SideNavList = ({ text, onClick, icon, isActive, className = "" }) => {
   return (
     <li className={`w-full flex justify-center ${className}`}>
       <button
-        className={`flex border border-black items-center ${expanded ? "justify-start w-35" : "justify-center w-10 h-10"} text-sm px-2 py-2 border rounded-md transition-all duration-200 cursor-pointer
+        className={`flex border border-black items-center ${expanded ? "justify-start w-35" : "justify-center w-10"} h-10 text-sm px-2 py-2 border rounded-md transition-all duration-200 cursor-pointer
           ${isActive ? "bg-[#DAFFDD] font-bold" : "hover:bg-[#F8FFE6]"}`}
         onClick={onClick}
       >
