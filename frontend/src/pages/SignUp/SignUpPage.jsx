@@ -36,7 +36,7 @@ const SignUpPage = () => {
 
   const onSubmit = (data) => {
     if (data.password !== data.confirmPassword) {
-      setError("Password do not match y MF!");
+      setError("Passwords do not match!");
     } else {
       navigate("/login");
     }
