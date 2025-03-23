@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import DashboardSidebar from "../pages/Dashboard/components/DashboardSidebar";
+import DashboardSidebar from "./DashboardSidebar";
 import { SidebarProvider } from "../providers/SidebarContext";
 
 const DashboardLayout = () => {
@@ -16,6 +16,7 @@ const DashboardLayout = () => {
       </div>
     </SidebarProvider>
   );
-}
+};
 
-export default DashboardLayout; 
+export default DashboardLayout;
+
