@@ -1,12 +1,13 @@
 import React from "react";
-import DashboardSidebar from "./components/DashboardSidebar";
-import { SidebarProvider } from "../../providers/SidebarContext";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 
 const DashboardPage = () => {
+  useDocumentTitle("Dashboard");
+
   return (
-    <SidebarProvider>
-      <DashboardSidebar />
-    </SidebarProvider>
+    <main>
+      <h1>Dashboard</h1>
+    </main>
   );
 };
 
