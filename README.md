@@ -6,8 +6,6 @@ NutriTrack is a diet planning web app that helps users manage meals, and track n
 
 - 🥗 Personalized meal planning
 - 🔢 Nutrition tracking (calories, nutrients)
-- 📅 Grocery list generator (TBD)
-- 🍳 Recipe suggestions
 - 🔐 Secure authentication
 
 ## Tech Stack
@@ -53,7 +51,7 @@ To contribute:
 2. **Create a feature branch** (`feature-branch-name`) Or **A page branch** (`page-branch-name`)
 3. **Make your changes and commit** (`git commit -m "Your message"`)
 4. **Push the changes** (`git push origin feature-branch-name`)
-5. **Open a Pull Request (PR)** to the `dev` branch
+5. **Open a Pull Request (PR)** to the `main` branch (or if there's dev branch in the near future, to the `dev` branch)
 
 Please read our [CONTRIBUTING.md](CONTRIBUTING.md) file for detailed guidelines.
 
