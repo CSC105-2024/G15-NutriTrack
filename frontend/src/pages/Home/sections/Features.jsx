@@ -38,7 +38,7 @@ const Features = () => {
           <img
             src="/assets/home/feature-1.jpg"
             className="w-full max-w-md"
-            alt="calculater showing kcal with a burger"
+            alt="calculator showing kcal with a burger"
           />
         </div>
 
