@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import FormInput from "../../components/FormInput";
+import FormInput from "../../../components/FormInput";
 import {
   faUser,
   faEnvelope,
   faEye,
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
-import Button from "../../components/Button";
+import Button from "../../../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import useDocumentTitle from "../../hooks/useDocumentTitle";
+import useDocumentTitle from "../../../hooks/useDocumentTitle";
 
 const SignUpPage = () => {
   useDocumentTitle("Register");
