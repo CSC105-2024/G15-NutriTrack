@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "./Button";
 
-const MealCard = ({ mealIndex, meal, onEdit, onFoodClick }) => {
+const MealCard = ({ mealIndex, meal, onFoodClick }) => {
   return (
     <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md border-2 border-black">
       <div className="flex justify-between items-center mb-4">

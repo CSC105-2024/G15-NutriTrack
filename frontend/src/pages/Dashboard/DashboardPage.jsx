@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import CalendarPopup from "@/components/CalendarPopup";
 import MealCard from "@/components/MealCard";
 import FoodDetailPopup from "@/components/FoodDetailPopup";
-import { meals } from "@/components/MealData";
+import { meals } from "@/data/MealData";
+import useDocumentTitle from "@/hooks/useDocumentTitle";
 
 const DashboardPage = () => {
+  useDocumentTitle("Dashboard");
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [showFoodDetail, setShowFoodDetail] = useState(false);
   const [selectedFood, setSelectedFood] = useState(null);
