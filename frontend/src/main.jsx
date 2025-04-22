@@ -36,7 +36,7 @@ const router = createBrowserRouter([
         element: <AddFoodPage />,
       },
       {
-        path: "/database",
+        path: "/fooddatabase",
         element: <FoodDatabasePage />,
       },
       {
