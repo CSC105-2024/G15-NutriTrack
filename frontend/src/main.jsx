@@ -36,7 +36,7 @@ const router = createBrowserRouter([
         element: <AddFoodPage />,
       },
       {
-        path: "/database",
+        path: "/fooddatabase",
         element: <FoodDatabasePage />,
       },
       {
@@ -50,5 +50,5 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>,
+  </StrictMode>
 );

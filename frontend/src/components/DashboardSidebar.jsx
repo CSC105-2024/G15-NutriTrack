@@ -51,7 +51,9 @@ const DashboardSidebar = () => {
           <div className={`flex ${expanded ? "" : "w-full justify-center"}`}>
             <button
               onClick={() => setExpanded((prev) => !prev)}
-              className={`p-1 rounded-full hover:bg-gray-100 cursor-pointer ${expanded ? "" : "my-2"}`}
+              className={`p-1 rounded-full hover:bg-gray-100 cursor-pointer ${
+                expanded ? "" : "my-2"
+              }`}
               aria-label={expanded ? "Collapse sidebar" : "Expand sidebar"}
             >
               <FontAwesomeIcon
@@ -63,10 +65,30 @@ const DashboardSidebar = () => {
         </div>
 
         <ul className={`flex flex-col gap-4 p-2 w-full`}>
-          <NavItem text="Home" icon={faHome} path="/dashboard" variant="sidebar" />
-          <NavItem text="Add Food" icon={faPlus} path="/addfood" variant="sidebar" />
-          <NavItem text="Database" icon={faDatabase} path="/database" variant="sidebar" />
-          <NavItem text="Profile" icon={faUser} path="/profile" variant="sidebar" />
+          <NavItem
+            text="Home"
+            icon={faHome}
+            path="/dashboard"
+            variant="sidebar"
+          />
+          <NavItem
+            text="Add Food"
+            icon={faPlus}
+            path="/addfood"
+            variant="sidebar"
+          />
+          <NavItem
+            text="Database"
+            icon={faDatabase}
+            path="/database"
+            variant="sidebar"
+          />
+          <NavItem
+            text="Profile"
+            icon={faUser}
+            path="/profile"
+            variant="sidebar"
+          />
         </ul>
 
         <div className="flex justify-center py-2">
@@ -76,14 +98,13 @@ const DashboardSidebar = () => {
         <div className="flex-grow"></div>
 
         <div className="p-2">
-
-        <NavItem
-          text="Sign Out"
-          icon={faSignOut}
-          path="/"
-          variant="sidebar"
-          className="mb-16"
-        />
+          <NavItem
+            text="Sign Out"
+            icon={faSignOut}
+            path="/"
+            variant="sidebar"
+            className="mb-16"
+          />
         </div>
       </nav>
     </aside>
