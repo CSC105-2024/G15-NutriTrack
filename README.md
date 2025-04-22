@@ -6,13 +6,15 @@ NutriTrack is a diet planning web app that helps users manage meals, and track n
 
 - 🥗 Personalized meal planning
 - 🔢 Nutrition tracking (calories, nutrients)
+- 📅 Grocery list generator (TBD)
+- 🍳 Recipe suggestions (TBD)
 - 🔐 Secure authentication
 
 ## Tech Stack
 
 - **Frontend:** Vite + React.js
 - **Backend:** Node.js + Express + PostgreSQL (TBD)
-- **Database ORM:** TBD
+- **Database ORM:** (TBD)
 - **Authentication:** JWT
 - **API Integration:** Spoonacular API (for recipes) (+more, TBD)
 
@@ -28,12 +30,19 @@ NutriTrack is a diet planning web app that helps users manage meals, and track n
 2. **Install dependencies:**
 
    ```sh
+   cd G15-NutriTrack
+   ```
+
+3. **Install dependencies:**
+   (Folders to be added later on)
+
+   ```sh
    cd frontend && npm install
    cd ../backend && npm install
    ```
 
-3. **Configure `.env` files** for API keys and database credentials.
-4. **Run the app:**
+4. **Configure `.env` files** for API keys and database credentials.
+5. **Run the app:**
 
    ```sh
    # Start backend
@@ -43,7 +52,7 @@ NutriTrack is a diet planning web app that helps users manage meals, and track n
    cd ../frontend && npm run dev
    ```
 
-## 📝 Contributing
+## Contributing
 
 To contribute:
 
@@ -55,6 +64,6 @@ To contribute:
 
 Please read our [CONTRIBUTING.md](CONTRIBUTING.md) file for detailed guidelines.
 
-## 📜 License
+## License
 
 This project is licensed under the MIT License.
