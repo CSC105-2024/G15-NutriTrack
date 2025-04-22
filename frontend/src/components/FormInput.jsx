@@ -11,6 +11,7 @@ const FormInput = ({
   value,
   onChange,
   autoComplete,
+  readOnly,
   ...rest
 }) => {
   return (
@@ -19,6 +20,7 @@ const FormInput = ({
         {...rest}
         type={type}
         name={name}
+        readOnly={readOnly}
         value={value}
         onChange={onChange}
         placeholder={placeholder}
