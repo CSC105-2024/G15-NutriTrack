@@ -11,8 +11,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-const CalendarPopup = () => {
-  const [date, setDate] = useState();
+const CalendarPopup = ({ date, setDate }) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
