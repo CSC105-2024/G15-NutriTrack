@@ -35,13 +35,15 @@ const testimonials = [
 ];
 
 const Testimonials = () => {
-  // Adjust settings based on screen size
   const slideSettings = {
     transitionDuration: 500,
     easing: "linear",
     infinite: true,
     arrows: true,
     indicators: true,
+    canSwipe: true,
+    prevArrow: <div className="text-3xl cursor-pointer text-gray-700">❮</div>,
+    nextArrow: <div className="text-3xl cursor-pointer text-gray-700">❯</div>,
   };
 
   return (
