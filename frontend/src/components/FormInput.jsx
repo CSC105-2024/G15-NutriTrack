@@ -15,9 +15,10 @@ const FormInput = ({
   ...rest
 }) => {
   return (
-    <div className="border-2 border-gray-300 rounded-lg flex justify-between px-3 sm:px-4 py-2 items-center hover:shadow-[0_0_4px_#22c55e] focus-within:shadow-[0_0_4px_#22c55e] transition-shadow">
+    <div className="border-2 border-gray-300 hover:border-[#22c55e] rounded-lg flex justify-between px-3 sm:px-4 py-2 items-center hover:shadow-[0_0_4px_#22c55e] focus-within:shadow-[0_0_4px_#22c55e] focus-within:border-[#22c55e] transition-shadow">
       <input
         {...rest}
+        id={name}
         type={type}
         name={name}
         readOnly={readOnly}
