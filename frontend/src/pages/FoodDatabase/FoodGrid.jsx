@@ -22,12 +22,11 @@ const FoodGrid = () => {
             className="bg-white border border-black rounded-xl p-4 cursor-pointer"
             onClick={() => handleCardClick(food)}
           >
-            <div className="bg-[#e9f5e8] rounded-lg p-4 flex flex-col items-center hover:bg-[#e8fcd4] transition-colors">
-              {/* Placeholder image */}
+            <div className="bg-[#e9f5e8] min-h-56 rounded-lg p-4 flex flex-col items-center hover:bg-[#e8fcd4] transition-colors">
               <img
-                src="/api/placeholder/144/144"
+                src={food.imgUrl}
                 alt={food.name}
-                className="w-32 h-32 object-cover rounded-full mb-4"
+                className="w-24 h-24 object-cover rounded-full mb-4"
               />
               <h2 className="text-center text-md font-medium">{food.name}</h2>
             </div>
