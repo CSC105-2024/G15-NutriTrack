@@ -21,6 +21,8 @@ export const foods = [
     preparation:
       "Stir-fry noodles, tofu, and shrimp with tamarind sauce. Top with peanuts and lime.",
     showDetails: false,
+    imgUrl:
+      "https://imgs.search.brave.com/H7-BoEeTJBCc3TcPBjgvox2kePuZ306BIz96rnZyIGU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjI5/NjAwNjg0L3Bob3Rv/L3BhZC10aGFpLWlz/b2xhdGVkLW9uLXRo/ZS10YWJsZS5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9UHU0/clNGd2RjRUpTcnZo/cFZRcUlVNnlFY3BJ/S0Y5QnBEYm85ekxt/MWg3VT0",
   },
   {
     name: "Tom Yum Soup",
@@ -43,6 +45,8 @@ export const foods = [
     preparation:
       "Boil shrimp with herbs and spices to create a hot and sour broth.",
     showDetails: false,
+    imgUrl:
+      "https://imgs.search.brave.com/H7-BoEeTJBCc3TcPBjgvox2kePuZ306BIz96rnZyIGU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjI5/NjAwNjg0L3Bob3Rv/L3BhZC10aGFpLWlz/b2xhdGVkLW9uLXRo/ZS10YWJsZS5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9UHU0/clNGd2RjRUpTcnZo/cFZRcUlVNnlFY3BJ/S0Y5QnBEYm85ekxt/MWg3VT0",
   },
   {
     name: "Green Curry (Gaeng Keow Wan)",
@@ -64,6 +68,8 @@ export const foods = [
     preparation:
       "Cook curry paste in coconut milk, then add chicken and vegetables.",
     showDetails: false,
+    imgUrl:
+      "https://imgs.search.brave.com/H7-BoEeTJBCc3TcPBjgvox2kePuZ306BIz96rnZyIGU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjI5/NjAwNjg0L3Bob3Rv/L3BhZC10aGFpLWlz/b2xhdGVkLW9uLXRo/ZS10YWJsZS5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9UHU0/clNGd2RjRUpTcnZo/cFZRcUlVNnlFY3BJ/S0Y5QnBEYm85ekxt/MWg3VT0",
   },
   {
     name: "Som Tum (Papaya Salad)",
@@ -84,6 +90,8 @@ export const foods = [
     preparation:
       "Pound ingredients together in a mortar and pestle for a crunchy, fresh salad.",
     showDetails: false,
+    imgUrl:
+      "https://imgs.search.brave.com/H7-BoEeTJBCc3TcPBjgvox2kePuZ306BIz96rnZyIGU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjI5/NjAwNjg0L3Bob3Rv/L3BhZC10aGFpLWlz/b2xhdGVkLW9uLXRo/ZS10YWJsZS5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9UHU0/clNGd2RjRUpTcnZo/cFZRcUlVNnlFY3BJ/S0Y5QnBEYm85ekxt/MWg3VT0",
   },
   {
     name: "Massaman Curry",
@@ -105,6 +113,8 @@ export const foods = [
     preparation:
       "Simmer meat, curry paste, and coconut milk, adding potatoes and peanuts toward the end.",
     showDetails: false,
+    imgUrl:
+      "https://imgs.search.brave.com/H7-BoEeTJBCc3TcPBjgvox2kePuZ306BIz96rnZyIGU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjI5/NjAwNjg0L3Bob3Rv/L3BhZC10aGFpLWlz/b2xhdGVkLW9uLXRo/ZS10YWJsZS5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9UHU0/clNGd2RjRUpTcnZo/cFZRcUlVNnlFY3BJ/S0Y5QnBEYm85ekxt/MWg3VT0",
   },
   {
     name: "Thai Basil Chicken (Pad Krapow Gai)",
@@ -126,6 +136,8 @@ export const foods = [
     preparation:
       "Stir-fry ground chicken with garlic, chili, and sauces, then add Thai basil at the end.",
     showDetails: false,
+    imgUrl:
+      "https://imgs.search.brave.com/H7-BoEeTJBCc3TcPBjgvox2kePuZ306BIz96rnZyIGU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjI5/NjAwNjg0L3Bob3Rv/L3BhZC10aGFpLWlz/b2xhdGVkLW9uLXRo/ZS10YWJsZS5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9UHU0/clNGd2RjRUpTcnZo/cFZRcUlVNnlFY3BJ/S0Y5QnBEYm85ekxt/MWg3VT0",
   },
   {
     name: "Mango Sticky Rice",
@@ -139,6 +151,8 @@ export const foods = [
     preparation:
       "Cook sticky rice and mix with coconut milk and sugar, then serve with sliced mango.",
     showDetails: false,
+    imgUrl:
+      "https://imgs.search.brave.com/H7-BoEeTJBCc3TcPBjgvox2kePuZ306BIz96rnZyIGU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjI5/NjAwNjg0L3Bob3Rv/L3BhZC10aGFpLWlz/b2xhdGVkLW9uLXRo/ZS10YWJsZS5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9UHU0/clNGd2RjRUpTcnZo/cFZRcUlVNnlFY3BJ/S0Y5QnBEYm85ekxt/MWg3VT0",
   },
   {
     name: "Pad See Ew",
@@ -159,6 +173,8 @@ export const foods = [
     preparation:
       "Stir-fry noodles, Chinese broccoli, and eggs with soy sauce and your choice of protein.",
     showDetails: false,
+    imgUrl:
+      "https://imgs.search.brave.com/H7-BoEeTJBCc3TcPBjgvox2kePuZ306BIz96rnZyIGU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjI5/NjAwNjg0L3Bob3Rv/L3BhZC10aGFpLWlz/b2xhdGVkLW9uLXRo/ZS10YWJsZS5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9UHU0/clNGd2RjRUpTcnZo/cFZRcUlVNnlFY3BJ/S0Y5QnBEYm85ekxt/MWg3VT0",
   },
   {
     name: "Khao Pad (Thai Fried Rice)",
@@ -181,6 +197,8 @@ export const foods = [
     preparation:
       "Fry rice with garlic, vegetables, and eggs. Add protein and season with sauces.",
     showDetails: false,
+    imgUrl:
+      "https://imgs.search.brave.com/H7-BoEeTJBCc3TcPBjgvox2kePuZ306BIz96rnZyIGU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjI5/NjAwNjg0L3Bob3Rv/L3BhZC10aGFpLWlz/b2xhdGVkLW9uLXRo/ZS10YWJsZS5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9UHU0/clNGd2RjRUpTcnZo/cFZRcUlVNnlFY3BJ/S0Y5QnBEYm85ekxt/MWg3VT0",
   },
   {
     name: "Thai Iced Tea",
@@ -194,6 +212,8 @@ export const foods = [
     preparation:
       "Brew black tea strong, sweeten with sugar, and mix with condensed milk. Serve over ice.",
     showDetails: false,
+    imgUrl:
+      "https://imgs.search.brave.com/H7-BoEeTJBCc3TcPBjgvox2kePuZ306BIz96rnZyIGU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjI5/NjAwNjg0L3Bob3Rv/L3BhZC10aGFpLWlz/b2xhdGVkLW9uLXRo/ZS10YWJsZS5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9UHU0/clNGd2RjRUpTcnZo/cFZRcUlVNnlFY3BJ/S0Y5QnBEYm85ekxt/MWg3VT0",
   },
   {
     name: "Thai Fish Cakes",
@@ -215,6 +235,8 @@ export const foods = [
     preparation:
       "Mix ingredients into a batter, shape into cakes, and fry until golden brown.",
     showDetails: false,
+    imgUrl:
+      "https://imgs.search.brave.com/H7-BoEeTJBCc3TcPBjgvox2kePuZ306BIz96rnZyIGU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjI5/NjAwNjg0L3Bob3Rv/L3BhZC10aGFpLWlz/b2xhdGVkLW9uLXRo/ZS10YWJsZS5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9UHU0/clNGd2RjRUpTcnZo/cFZRcUlVNnlFY3BJ/S0Y5QnBEYm85ekxt/MWg3VT0",
   },
   {
     name: "Khao Soi (Curry Noodles)",
@@ -236,6 +258,8 @@ export const foods = [
     preparation:
       "Simmer chicken in curry paste and coconut milk, then serve over noodles with crispy noodles on top.",
     showDetails: false,
+    imgUrl:
+      "https://imgs.search.brave.com/H7-BoEeTJBCc3TcPBjgvox2kePuZ306BIz96rnZyIGU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjI5/NjAwNjg0L3Bob3Rv/L3BhZC10aGFpLWlz/b2xhdGVkLW9uLXRo/ZS10YWJsZS5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9UHU0/clNGd2RjRUpTcnZo/cFZRcUlVNnlFY3BJ/S0Y5QnBEYm85ekxt/MWg3VT0",
   },
   {
     name: "Satay Skewers",
@@ -257,6 +281,8 @@ export const foods = [
     preparation:
       "Marinate meat, skewer, grill, and serve with a homemade peanut dipping sauce.",
     showDetails: false,
+    imgUrl:
+      "https://imgs.search.brave.com/H7-BoEeTJBCc3TcPBjgvox2kePuZ306BIz96rnZyIGU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjI5/NjAwNjg0L3Bob3Rv/L3BhZC10aGFpLWlz/b2xhdGVkLW9uLXRo/ZS10YWJsZS5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9UHU0/clNGd2RjRUpTcnZo/cFZRcUlVNnlFY3BJ/S0Y5QnBEYm85ekxt/MWg3VT0",
   },
   {
     name: "Thai Green Mango Salad",
@@ -278,6 +304,8 @@ export const foods = [
     preparation:
       "Shred green mango and mix with other ingredients for a spicy, tangy salad.",
     showDetails: false,
+    imgUrl:
+      "https://imgs.search.brave.com/H7-BoEeTJBCc3TcPBjgvox2kePuZ306BIz96rnZyIGU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjI5/NjAwNjg0L3Bob3Rv/L3BhZC10aGFpLWlz/b2xhdGVkLW9uLXRo/ZS10YWJsZS5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9UHU0/clNGd2RjRUpTcnZo/cFZRcUlVNnlFY3BJ/S0Y5QnBEYm85ekxt/MWg3VT0",
   },
   {
     name: "Larb (Minced Meat Salad)",
@@ -297,6 +325,8 @@ export const foods = [
     preparation:
       "Cook the ground meat, then mix with lime, mint, chili, and other seasonings.",
     showDetails: false,
+    imgUrl:
+      "https://imgs.search.brave.com/H7-BoEeTJBCc3TcPBjgvox2kePuZ306BIz96rnZyIGU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjI5/NjAwNjg0L3Bob3Rv/L3BhZC10aGFpLWlz/b2xhdGVkLW9uLXRo/ZS10YWJsZS5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9UHU0/clNGd2RjRUpTcnZo/cFZRcUlVNnlFY3BJ/S0Y5QnBEYm85ekxt/MWg3VT0",
   },
   {
     name: "Thai Coconut Soup (Tom Kha Gai)",
@@ -318,6 +348,8 @@ export const foods = [
     preparation:
       "Simmer chicken and herbs in coconut milk to make a rich, flavorful soup.",
     showDetails: false,
+    imgUrl:
+      "https://imgs.search.brave.com/H7-BoEeTJBCc3TcPBjgvox2kePuZ306BIz96rnZyIGU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjI5/NjAwNjg0L3Bob3Rv/L3BhZC10aGFpLWlz/b2xhdGVkLW9uLXRo/ZS10YWJsZS5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9UHU0/clNGd2RjRUpTcnZo/cFZRcUlVNnlFY3BJ/S0Y5QnBEYm85ekxt/MWg3VT0",
   },
   {
     name: "Thai Steamed Fish",
@@ -337,5 +369,7 @@ export const foods = [
     ],
     preparation: "Steam the fish and top with a garlic, lime, and chili sauce.",
     showDetails: false,
+    imgUrl:
+      "https://imgs.search.brave.com/H7-BoEeTJBCc3TcPBjgvox2kePuZ306BIz96rnZyIGU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjI5/NjAwNjg0L3Bob3Rv/L3BhZC10aGFpLWlz/b2xhdGVkLW9uLXRo/ZS10YWJsZS5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9UHU0/clNGd2RjRUpTcnZo/cFZRcUlVNnlFY3BJ/S0Y5QnBEYm85ekxt/MWg3VT0",
   },
 ];
