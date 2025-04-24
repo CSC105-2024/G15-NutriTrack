@@ -9,7 +9,7 @@ const DashboardLayout = () => {
       <div className="flex min-h-screen">
         <DashboardSidebar />
         <main className="flex-1 ml-6 transition-all duration-300">
-          <div className="p-4">
+          <div className="p-4 overflow-y-scroll h-screen">
             <Outlet />
           </div>
         </main>
@@ -19,4 +19,3 @@ const DashboardLayout = () => {
 };
 
 export default DashboardLayout;
-
