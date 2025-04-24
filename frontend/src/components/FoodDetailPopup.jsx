@@ -53,7 +53,7 @@ const FoodDetailPopup = ({ food, onClose }) => {
           {/* Food image - using placeholder */}
           <div className="rounded-full overflow-hidden w-36 h-36 flex-shrink-0 bg-white">
             <img
-              src="/api/placeholder/144/144"
+              src={food.imgUrl}
               alt={food.name}
               className="w-full h-full object-cover"
             />
