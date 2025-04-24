@@ -22,7 +22,7 @@ const FoodGrid = () => {
             className="bg-white border border-black rounded-xl p-4 cursor-pointer"
             onClick={() => handleCardClick(food)}
           >
-            <div className="bg-[#e9f5e8] min-h-56 rounded-lg p-4 flex flex-col items-center hover:bg-[#e8fcd4] transition-colors">
+            <div className="bg-[#e9f5e8] min-h-56 rounded-lg p-4 flex flex-col items-center hover:bg-[#e8fcd4] transition-colors justify-between">
               <img
                 src={food.imgUrl}
                 alt={food.name}
