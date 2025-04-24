@@ -7,7 +7,7 @@ const FoodDatabasePage = () => {
 
   return (
     <>
-      <div>FoodDatabasePage</div>
+      <h1 className="text-2xl font-bold">Food Database</h1>
       <FoodGrid />
     </>
   );
