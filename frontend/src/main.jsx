@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import LogInPage from "./pages/LogInPage.jsx";
+import LogInPage from "./pages/LogIn/LogInPage.jsx";
 import SignUpPage from "./pages/SignUp/components/SignUpPage.jsx";
 import HomePage from "./pages/Home/HomePage.jsx";
 import DashboardPage from "./pages/Dashboard/DashboardPage.jsx";
