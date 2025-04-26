@@ -28,6 +28,7 @@ import CalendarPopup from "@/components/CalendarPopup";
 import useDocumentTitle from "@/hooks/useDocumentTitle";
 import { useMealPlans } from "@/components/MealPlanContext";
 import FoodDetailPopup from "./FoodDetailPopup";
+import Footer from "../Home/sections/Footer";
 
 const DashboardPage = () => {
   useDocumentTitle("Dashboard");
@@ -374,6 +375,8 @@ const DashboardPage = () => {
           </div>
         </div>
       </div>
+
+      <Footer />
 
       {/* Food Detail Popup */}
       {selectedFood && (
