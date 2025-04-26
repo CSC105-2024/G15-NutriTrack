@@ -2,6 +2,8 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+// Import pages
 import LogInPage from "./pages/LogIn/LogInPage.jsx";
 import SignUpPage from "./pages/SignUp/components/SignUpPage.jsx";
 import HomePage from "./pages/Home/HomePage.jsx";
@@ -10,6 +12,7 @@ import AddFoodPage from "./pages/AddFood/AddFoodPage.jsx";
 import FoodDatabasePage from "./pages/FoodDatabase/FoodDatabasePage.jsx";
 import UserAccountPage from "./pages/UserAccount/UserAccountPage.jsx";
 import DashboardLayout from "./components/DashboardLayout";
+import { MealPlanProvider } from "./components/MealPlanContext";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +52,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <MealPlanProvider>
+      <RouterProvider router={router} />
+    </MealPlanProvider>
   </StrictMode>
 );

@@ -1,51 +1,86 @@
 import React, { useState } from "react";
+import { format } from "date-fns";
+import MealCard from "@/pages/Dashboard/MealCard";
 import CalendarPopup from "@/components/CalendarPopup";
-import MealCard from "@/components/MealCard";
-import FoodDetailPopup from "@/components/FoodDetailPopup";
-import { meals } from "@/data/MealData";
 import useDocumentTitle from "@/hooks/useDocumentTitle";
+import { useMealPlans } from "@/components/MealPlanContext";
+import FoodDetailPopup from "./FoodDetailPopup";
 
 const DashboardPage = () => {
   useDocumentTitle("Dashboard");
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [showFoodDetail, setShowFoodDetail] = useState(false);
+
+  const { mealPlans, selectedDate, setSelectedDate } = useMealPlans();
+  // Add state for the selected food and popup visibility
   const [selectedFood, setSelectedFood] = useState(null);
 
-  const handleEditMeal = (mealTitle) => {
-    console.log(`Editing ${mealTitle}`);
-    // Implement edit functionality here
+  const dateKey = selectedDate ? format(selectedDate, "yyyy-MM-dd") : "";
+
+  // Ensure there's a meal plan for the selected date
+  const currentMealPlan = mealPlans[dateKey] || {
+    breakfast: [],
+    lunch: [],
+    dinner: [],
   };
 
-  const handleFoodClick = (mealIndex, foodIndex) => {
-    setSelectedFood(meals[mealIndex].itemDetails[foodIndex]);
-    setShowFoodDetail(true);
+  const handleFoodClick = (mealType, foodIndex) => {
+    // Get the selected food item and display it in the popup
+    const food = currentMealPlan[mealType][foodIndex];
+    if (food) {
+      setSelectedFood(food);
+    }
+  };
+
+  // Handle closing the popup
+  const handleClosePopup = () => {
+    setSelectedFood(null);
+  };
+
+  // Calculate nutrition totals for each meal
+  const getMealTotals = (foods) => {
+    return {
+      calories: foods.reduce((sum, food) => sum + (food.calories || 0), 0),
+      protein: foods.reduce((sum, food) => sum + (food.protein || 0), 0),
+      fat: foods.reduce((sum, food) => sum + (food.fat || 0), 0),
+      carb: foods.reduce((sum, food) => sum + (food.carb || 0), 0),
+    };
   };
 
   return (
     <div className="container mx-auto py-8 px-4">
       <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
 
+      {/* Date Selector */}
       <div className="mb-8">
         <CalendarPopup date={selectedDate} setDate={setSelectedDate} />
       </div>
 
+      {/* Meal Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {meals.map((meal, mealIndex) => (
-          <MealCard
-            key={mealIndex}
-            mealIndex={mealIndex}
-            meal={meal}
-            onEdit={() => handleEditMeal(meal.title)}
-            onFoodClick={handleFoodClick}
-          />
-        ))}
+        {["breakfast", "lunch", "dinner"].map((mealType) => {
+          const foods = currentMealPlan[mealType] || [];
+          const totals = getMealTotals(foods);
+
+          return (
+            <MealCard
+              key={mealType}
+              mealIndex={mealType}
+              meal={{
+                title: mealType.charAt(0).toUpperCase() + mealType.slice(1),
+                items: foods,
+                calories: totals.calories,
+                protein: totals.protein,
+                fat: totals.fat,
+                carb: totals.carb,
+              }}
+              onFoodClick={handleFoodClick}
+            />
+          );
+        })}
       </div>
 
-      {showFoodDetail && (
-        <FoodDetailPopup
-          food={selectedFood}
-          onClose={() => setShowFoodDetail(false)}
-        />
+      {/* Food Detail Popup */}
+      {selectedFood && (
+        <FoodDetailPopup food={selectedFood} onClose={handleClosePopup} />
       )}
     </div>
   );

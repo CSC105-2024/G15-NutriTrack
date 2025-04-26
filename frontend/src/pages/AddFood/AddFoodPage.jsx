@@ -4,16 +4,17 @@ import { FoodSelectorOverlay } from "./FoodGrid";
 import useDocumentTitle from "../../hooks/useDocumentTitle";
 import CalendarPopup from "@/components/CalendarPopup";
 import Button from "@/components/Button";
+import { useMealPlans } from "@/components/MealPlanContext";
 
 const AddFoodPage = () => {
   useDocumentTitle("Add Food");
+  const { mealPlans, setMealPlans, selectedDate, setSelectedDate } =
+    useMealPlans();
 
-  const [date, setDate] = useState(new Date());
-  const [mealPlans, setMealPlans] = useState({});
   const [showFoodSelector, setShowFoodSelector] = useState(false);
   const [currentMealType, setCurrentMealType] = useState(null);
 
-  const dateKey = date ? format(date, "yyyy-MM-dd") : "";
+  const dateKey = selectedDate ? format(selectedDate, "yyyy-MM-dd") : "";
 
   useEffect(() => {
     if (dateKey && !mealPlans[dateKey]) {
@@ -76,7 +77,7 @@ const AddFoodPage = () => {
 
       {/* Date Selector */}
       <div className="mb-8">
-        <CalendarPopup date={date} setDate={setDate} />
+        <CalendarPopup date={selectedDate} setDate={setSelectedDate} />
       </div>
 
       {/* Meal Cards */}
