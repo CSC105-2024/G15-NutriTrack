@@ -45,6 +45,33 @@ const DashboardPage = () => {
     };
   };
 
+  const calculateDailyTotals = () => {
+    const mealTypes = ["breakfast", "lunch", "dinner"];
+    let totalCalories = 0;
+    let totalProtein = 0;
+    let totalCarbs = 0;
+    let totalFat = 0;
+
+    mealTypes.forEach((mealType) => {
+      const foods = currentMealPlan[mealType] || [];
+      const mealTotals = getMealTotals(foods);
+
+      totalCalories += mealTotals.calories;
+      totalProtein += mealTotals.protein;
+      totalFat += mealTotals.fat;
+      totalCarbs += mealTotals.carb;
+    });
+
+    return {
+      calories: totalCalories,
+      protein: totalProtein,
+      carbs: totalCarbs,
+      fat: totalFat,
+    };
+  };
+
+  const dailyTotals = calculateDailyTotals();
+
   return (
     <div className="container mx-auto py-8 px-4">
       <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
@@ -76,6 +103,34 @@ const DashboardPage = () => {
             />
           );
         })}
+      </div>
+
+      {/* Daily Nutrition Totals */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <div className="bg-gray-200 p-4 rounded-lg">
+          <div className="flex justify-between items-center">
+            <h2 className="text-xl font-semibold">Total Calories:</h2>
+            <p className="text-2xl font-bold">{dailyTotals.calories}</p>
+          </div>
+        </div>
+        <div className="bg-gray-200 p-4 rounded-lg">
+          <div className="flex justify-between items-center">
+            <h2 className="text-xl font-semibold">Total Protein:</h2>
+            <p className="text-2xl font-bold">{dailyTotals.protein}g</p>
+          </div>
+        </div>
+        <div className="bg-gray-200 p-4 rounded-lg">
+          <div className="flex justify-between items-center">
+            <h2 className="text-xl font-semibold">Total Carbs:</h2>
+            <p className="text-2xl font-bold">{dailyTotals.carbs}g</p>
+          </div>
+        </div>
+        <div className="bg-gray-200 p-4 rounded-lg">
+          <div className="flex justify-between items-center">
+            <h2 className="text-xl font-semibold">Total Fats:</h2>
+            <p className="text-2xl font-bold">{dailyTotals.fat}g</p>
+          </div>
+        </div>
       </div>
 
       {/* Food Detail Popup */}
