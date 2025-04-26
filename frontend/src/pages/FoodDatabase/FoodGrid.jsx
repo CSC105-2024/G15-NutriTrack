@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { foods } from "../../data/SampleData";
-import FoodDetailPopup from "../../components/FoodDetailPopup";
+import FoodDetailPopup from "../Dashboard/FoodDetailPopup";
 import FormInput from "@/components/FormInput";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
