@@ -12,11 +12,8 @@ import AddFoodPage from "./pages/AddFood/AddFoodPage.jsx";
 import FoodDatabasePage from "./pages/FoodDatabase/FoodDatabasePage.jsx";
 import UserAccountPage from "./pages/UserAccount/UserAccountPage.jsx";
 import DashboardLayout from "./components/DashboardLayout";
-<<<<<<< HEAD
 import { MealPlanProvider } from "./components/MealPlanContext";
-=======
 import EditUserAccount from "./pages/UserAccount/EditUserAccount";
->>>>>>> 8ffdf26 (feat(routes): add profile edit route)
 
 const router = createBrowserRouter([
   {
@@ -63,5 +60,5 @@ createRoot(document.getElementById("root")).render(
     <MealPlanProvider>
       <RouterProvider router={router} />
     </MealPlanProvider>
-  </StrictMode>
+  </StrictMode>,
 );
