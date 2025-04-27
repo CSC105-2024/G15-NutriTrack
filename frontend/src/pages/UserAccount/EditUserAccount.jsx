@@ -75,7 +75,7 @@ const EditUserAccount = () => {
         <ProfileCard
           src={profileImage}
           onImageChange={handleImageChange}
-          showEdit
+          showEdit={true}
         />
 
         <div className="w-full">

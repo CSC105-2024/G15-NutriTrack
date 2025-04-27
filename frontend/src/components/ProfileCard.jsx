@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const ProfileCard = ({ src, onImageChange, showEdit = false }) => {
+  const [showOverlay, setShowOverlay] = useState(false);
   const fileInputRef = useRef(null);
 
   const handleIconClick = () => {
