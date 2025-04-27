@@ -54,6 +54,7 @@ const ProfileCard = ({ src, onImageChange, showEdit = false }) => {
             accept="image/*"
             className="hidden"
           />
+        </div>
       )}
 
       {showOverlay && (
