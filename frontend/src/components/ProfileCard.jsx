@@ -4,7 +4,7 @@ import { faPen } from "@fortawesome/free-solid-svg-icons";
 
 const ProfileCard = ({ src }) => {
   return (
-    <div className="relative inline-block w-48 col-span-2 justify-self-center mb-8">
+    <div className="relative inline-block w-48 col-span-1 lg:col-span-2 justify-self-center mb-8">
       <img
         className="rounded-full object-cover w-full h-auto border border-black"
         src={src}
