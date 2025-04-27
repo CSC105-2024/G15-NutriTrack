@@ -2,8 +2,7 @@ import React, { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-const ProfileCard = ({ src, onImageChange, showEdit }) => {
-  const [showOverlay, setShowOverlay] = useState(false);
+const ProfileCard = ({ src, onImageChange, showEdit = false }) => {
   const fileInputRef = useRef(null);
 
   const handleIconClick = () => {
