@@ -72,7 +72,11 @@ const EditUserAccount = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="grid grid-cols-1 lg:grid-cols-1 gap-x-10 gap-y-8 mx-2 lg:mx-24">
-        <ProfileCard src={profileImage} onImageChange={handleImageChange} />
+        <ProfileCard
+          src={profileImage}
+          onImageChange={handleImageChange}
+          showEdit
+        />
 
         <div className="w-full">
           <FormInputWithLabel
