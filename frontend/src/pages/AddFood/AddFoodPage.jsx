@@ -58,11 +58,15 @@ const AddFoodPage = () => {
     if (!dateKey) return;
 
     setMealPlans((prev) => {
-      const newMealPlan = { ...prev };
-      newMealPlan[dateKey][mealType] = [
-        ...newMealPlan[dateKey][mealType].slice(0, foodIndex),
-        ...newMealPlan[dateKey][mealType].slice(foodIndex + 1),
-      ];
+      const newMealPlan = {
+        ...prev,
+        [dateKey]: {
+          ...prev[dateKey],
+          [mealType]: prev[dateKey][mealType].filter(
+            (_, index) => index !== foodIndex
+          ),
+        },
+      };
       return newMealPlan;
     });
   };

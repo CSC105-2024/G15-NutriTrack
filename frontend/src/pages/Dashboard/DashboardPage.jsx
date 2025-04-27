@@ -263,9 +263,9 @@ const DashboardPage = () => {
       </div>
 
       {/* Container for Both Charts */}
-      <div className="flex flex-col md:flex-row gap-8">
+      <div className="flex flex-col md:flex-row gap-8 mb-6">
         {/* Nutrient Breakdown Chart */}
-        <div className="bg-gray-200 p-6 rounded-lg flex-1">
+        <div className="bg-gray-200 p-6 rounded-lg flex-1 shadow-xl">
           <h2 className="text-2xl font-bold text-center mb-4">
             Nutrient Breakdown
           </h2>
@@ -311,7 +311,7 @@ const DashboardPage = () => {
         </div>
 
         {/* Calorie Breakdown Chart */}
-        <div className="bg-gray-200 p-6 rounded-lg flex-1">
+        <div className="bg-gray-200 p-6 rounded-lg flex-1 shadow-xl">
           <h2 className="text-2xl font-bold text-center mb-4">
             Calorie Breakdown
           </h2>

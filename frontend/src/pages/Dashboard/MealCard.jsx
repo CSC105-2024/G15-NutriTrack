@@ -10,7 +10,7 @@ const MealCard = ({ mealIndex, meal, onFoodClick }) => {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md border-2 border-black">
+    <div className="bg-white p-6 rounded-lg w-full max-w-md border-2 shadow-xl">
       <div className="flex justify-between items-center mb-4">
         <h3 className="text-xl font-semibold">{meal.title}</h3>
         <Button text={"Edit"} variant="primary" onClick={editHandle} />
@@ -21,7 +21,7 @@ const MealCard = ({ mealIndex, meal, onFoodClick }) => {
         meal.items.map((item, index) => (
           <div
             key={index}
-            className="bg-gradient-to-r from-yellow-100 to-yellow-300 p-3 rounded mb-3 cursor-pointer hover:brightness-110 transition-all text-base"
+            className="bg-gradient-to-r from-yellow-100 to-yellow-300 p-3 rounded mb-3 cursor-pointer hover:brightness-110 transition-all text-base shadow-2xs"
             onClick={() => onFoodClick(mealIndex, index)}
           >
             <div className="flex justify-between">
