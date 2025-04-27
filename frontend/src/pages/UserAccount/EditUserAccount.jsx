@@ -16,6 +16,10 @@ const EditUserAccount = () => {
   useDocumentTitle("Edit Profile");
   const navigate = useNavigate();
 
+  const [profileImage, setProfileImage] = useState(
+    "https://vandclover.wordpress.com/wp-content/uploads/2013/03/1.jpg",
+  );
+
   const [formData, setFormData] = useState({
     fullName: "Henry Cavil",
     email: "something@example.com",
@@ -42,6 +46,10 @@ const EditUserAccount = () => {
     }));
   };
 
+  const handleImageChange = (newImageUrl) => {
+    setProfileImage(newImageUrl);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
@@ -64,7 +72,7 @@ const EditUserAccount = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="grid grid-cols-1 lg:grid-cols-1 gap-x-10 gap-y-8 mx-2 lg:mx-24">
-        <ProfileCard src="https://vandclover.wordpress.com/wp-content/uploads/2013/03/1.jpg" />
+        <ProfileCard src={profileImage} onImageChange={handleImageChange} />
 
         <div className="w-full">
           <FormInputWithLabel

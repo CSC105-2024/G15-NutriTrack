@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useDocumentTitle from "../../hooks/useDocumentTitle";
 import {
   faCalendar,
@@ -15,11 +15,19 @@ import { Link } from "react-router-dom";
 const UserAccountPage = () => {
   useDocumentTitle("Profile");
 
+  const [profileImage, setProfileImage] = useState(
+    "https://vandclover.wordpress.com/wp-content/uploads/2013/03/1.jpg",
+  );
+
+  const handleImageChange = (newImageUrl) => {
+    setProfileImage(newImageUrl);
+  };
+
   return (
     <>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-10 gap-y-8 mx-2 lg:mx-24 items-start">
         {/* Profile Image */}
-        <ProfileCard src="https://vandclover.wordpress.com/wp-content/uploads/2013/03/1.jpg" />
+        <ProfileCard src={profileImage} onImageChange={handleImageChange} />
 
         {/* Fields */}
         <FormInputWithLabel
