@@ -13,6 +13,7 @@ import FoodDatabasePage from "./pages/FoodDatabase/FoodDatabasePage.jsx";
 import UserAccountPage from "./pages/UserAccount/UserAccountPage.jsx";
 import DashboardLayout from "./components/DashboardLayout";
 import { MealPlanProvider } from "./components/MealPlanContext";
+import EditUserAccount from "./pages/UserAccount/EditUserAccount";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
         path: "/profile",
         element: <UserAccountPage />,
       },
+      {
+        path: "/profile/edit",
+        element: <EditUserAccount />,
+      },
     ],
   },
 ]);
@@ -55,5 +60,5 @@ createRoot(document.getElementById("root")).render(
     <MealPlanProvider>
       <RouterProvider router={router} />
     </MealPlanProvider>
-  </StrictMode>
+  </StrictMode>,
 );
