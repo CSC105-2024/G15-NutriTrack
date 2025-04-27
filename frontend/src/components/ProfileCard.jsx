@@ -53,8 +53,7 @@ const ProfileCard = ({ src, onImageChange, showEdit = false }) => {
             onChange={handleFileSelect}
             accept="image/*"
             className="hidden"
-          />{" "}
-        </div>
+          />
       )}
 
       {showOverlay && (
