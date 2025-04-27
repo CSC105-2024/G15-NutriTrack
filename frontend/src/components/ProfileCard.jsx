@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-const ProfileCard = ({ src, onImageChange }) => {
+const ProfileCard = ({ src, onImageChange, showEdit = false }) => {
   const [showOverlay, setShowOverlay] = useState(false);
   const fileInputRef = useRef(null);
 
@@ -39,20 +39,22 @@ const ProfileCard = ({ src, onImageChange }) => {
         src={src}
         alt="profile image"
       />
-      <FontAwesomeIcon
-        icon={faPen}
-        size="lg"
-        className="absolute bottom-0 right-0 cursor-pointer bg-[#DAFFDD] p-4 rounded-2xl text-gray-700 shadow-md hover:bg-[#F8FFE6]"
-        onClick={handleIconClick}
-      />
-
-      <input
-        type="file"
-        ref={fileInputRef}
-        onChange={handleFileSelect}
-        accept="image/*"
-        className="hidden"
-      />
+      {showEdit && (
+        <div>
+          <FontAwesomeIcon
+            icon={faPen}
+            size="lg"
+            className="absolute bottom-0 right-0 cursor-pointer bg-[#DAFFDD] p-4 rounded-2xl text-gray-700 shadow-md hover:bg-[#F8FFE6]"
+            onClick={handleIconClick}
+          />
+          <input
+            type="file"
+            ref={fileInputRef}
+            onChange={handleFileSelect}
+            accept="image/*"
+            className="hidden"
+          />
+      )}
 
       {showOverlay && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
