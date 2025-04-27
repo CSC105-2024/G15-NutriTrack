@@ -9,13 +9,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import FormInputWithLabel from "@/components/FormInputWithLabel";
 import ProfileCard from "@/components/ProfileCard";
+import Button from "@/components/Button";
+import { Link } from "react-router-dom";
 
 const UserAccountPage = () => {
   useDocumentTitle("Profile");
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-x-10 gap-y-8 mx-24 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-10 gap-y-8 mx-2 lg:mx-24 items-start">
         {/* Profile Image */}
         <ProfileCard src="https://vandclover.wordpress.com/wp-content/uploads/2013/03/1.jpg" />
 
@@ -60,6 +62,13 @@ const UserAccountPage = () => {
           readOnly={true}
           iconFa={faLock}
         />
+
+        <Link
+          to="/profile/edit"
+          className="col-span-1 lg:col-span-2 flex justify-center mt-8"
+        >
+          <Button type="submit" text="Edit" variant="secondary" />
+        </Link>
       </div>
     </>
   );
