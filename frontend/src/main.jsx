@@ -14,6 +14,7 @@ import UserAccountPage from "./pages/UserAccount/UserAccountPage.jsx";
 import DashboardLayout from "./components/DashboardLayout";
 import { MealPlanProvider } from "./components/MealPlanContext";
 import EditUserAccount from "./pages/UserAccount/EditUserAccount";
+import { ThemeProvider } from "./providers/ThemeProvider";
 
 const router = createBrowserRouter([
   {
@@ -57,8 +58,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <MealPlanProvider>
-      <RouterProvider router={router} />
-    </MealPlanProvider>
+    <ThemeProvider>
+      <MealPlanProvider>
+        <RouterProvider router={router} />
+      </MealPlanProvider>
+    </ThemeProvider>
   </StrictMode>,
 );
