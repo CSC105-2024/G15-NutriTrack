@@ -25,7 +25,7 @@ const FormInputWithLabel = ({
             id={name}
             value={value}
             onChange={onChange}
-            className="w-full px-10 py-2 border border-gray-300 rounded-md appearance-none"
+            className="w-full p-2 border border-gray-300 rounded-md appearance-none"
           >
             <option value="" disabled>
               Select {label}
