@@ -13,6 +13,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useDocumentTitle from "../../../hooks/useDocumentTitle";
+import toast from "react-hot-toast";
 
 const SignUpPage = () => {
   useDocumentTitle("Register");
@@ -45,12 +46,13 @@ const SignUpPage = () => {
     }
 
     try {
-      const res = await axios.post("http://localhost:3000/signup", {
+      const res = await axios.post(`${API_BASE_URL}/signup`, {
         name: data.username,
         email: data.email,
         password: data.password,
       });
       if (res.data.success) {
+        toast.success("Account created successfully!");
         navigate("/login");
       } else {
         setError(res.data.msg || "Signup failed");
