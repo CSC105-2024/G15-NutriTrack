@@ -18,7 +18,7 @@ const createUser = async (c: Context) => {
       );
     }
 
-    if (await userModel.isDuplicate(email)) {
+    if (await userModel.findByEmail(email)) {
       return c.json({
         success: false,
         data: null,
@@ -47,4 +47,34 @@ const createUser = async (c: Context) => {
   }
 };
 
-export { createUser };
+const loginUser = async (c: Context) => {
+  try {
+    const { email, password } = await c.req.json();
+    const user = await userModel.findByEmail(email);
+
+    if (!user || user.password !== password) {
+      return c.json(
+        {
+          success: false,
+          data: null,
+          msg: "Invalid credentials",
+        },
+        401,
+      );
+    }
+
+    const { password: _, ...safeUser } = user;
+    return c.json({ success: true, data: safeUser, msg: "Login successful" });
+  } catch (e) {
+    return c.json(
+      {
+        success: false,
+        data: null,
+        msg: `${e}`,
+      },
+      500,
+    );
+  }
+};
+
+export { createUser, loginUser };
