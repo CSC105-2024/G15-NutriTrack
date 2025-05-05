@@ -21,6 +21,7 @@ model MealLog {
   id      String      @id @default(uuid())
   userId  String
   user    User        @relation(fields: [userId], references: [id])
+  date    DateTime
   type    MealType
   entries FoodEntry[]
 }
@@ -33,7 +34,7 @@ model DefaultFood {
   fat         Float
   carb        Float
   mealType    MealType?
-  FoodEntries FoodEntry[]
+  foodEntries FoodEntry[]
 }
 
 model FoodEntry {
