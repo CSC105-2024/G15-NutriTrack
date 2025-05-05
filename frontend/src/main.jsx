@@ -15,6 +15,7 @@ import DashboardLayout from "./components/DashboardLayout";
 import { MealPlanProvider } from "./components/MealPlanContext";
 import EditUserAccount from "./pages/UserAccount/EditUserAccount";
 import { ThemeProvider } from "./providers/ThemeProvider";
+import { Toaster } from "react-hot-toast";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,7 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ThemeProvider>
       <MealPlanProvider>
+        <Toaster position="top-right" />
         <RouterProvider router={router} />
       </MealPlanProvider>
     </ThemeProvider>
