@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import FormInput from "../../components/FormInput";
 import {
-  faUser,
   faEnvelope,
-  faLock,
   faEye,
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
@@ -13,10 +11,13 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useDocumentTitle from "../../hooks/useDocumentTitle";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const LogInPage = () => {
   useDocumentTitle("Log In");
   const navigate = useNavigate();
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   const loginSchema = z.object({
     email: z.string().email("Invalid email address"),
@@ -31,10 +32,26 @@ const LogInPage = () => {
     formState: { errors },
   } = useForm({ resolver: zodResolver(loginSchema) });
 
+  const [error, setError] = useState(null);
+
   const [showPassword, setShowPassword] = useState(false);
 
-  const onSubmit = (data) => {
-    navigate("/dashboard");
+  const onSubmit = async (data) => {
+    setError(null);
+    try {
+      const res = await axios.post(`${API_BASE_URL}/auth/login`, {
+        email: data.email,
+        password: data.password,
+      });
+      if (res.data.success) {
+        toast.success("Login Successful");
+        navigate("/dashboard");
+      } else {
+        setError(res.data.msg || "Login failed");
+      }
+    } catch (err) {
+      setError(err.response?.data?.msg || "Server error");
+    }
   };
 
   return (
@@ -72,9 +89,11 @@ const LogInPage = () => {
               onToggle={() => setShowPassword(!showPassword)}
               autoComplete="current-password"
             />
-            {errors.password && (
+            {errors.password ? (
               <p className="text-red-500 text-sm">{errors.password.message}</p>
-            )}
+            ) : error ? (
+              <p className="text-red-500 text-sm">{error}</p>
+            ) : null}
           </div>
           <Button className="w-full mt-2" text="Log In" type="submit" />
           <p className="text-center text-gray-600">
