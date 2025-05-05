@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import FormInput from "../../../components/FormInput";
+import axios from "axios";
 import {
   faUser,
   faEnvelope,
@@ -15,6 +16,7 @@ import useDocumentTitle from "../../../hooks/useDocumentTitle";
 
 const SignUpPage = () => {
   useDocumentTitle("Register");
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const signupSchema = z.object({
@@ -36,11 +38,25 @@ const SignUpPage = () => {
 
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     if (data.password !== data.confirmPassword) {
       setError("Passwords do not match!");
-    } else {
-      navigate("/login");
+      return;
+    }
+
+    try {
+      const res = await axios.post("http://localhost:3000/signup", {
+        name: data.username,
+        email: data.email,
+        password: data.password,
+      });
+      if (res.data.success) {
+        navigate("/login");
+      } else {
+        setError(res.data.msg || "Signup failed");
+      }
+    } catch (err) {
+      setError(err.response?.data?.msg || "Server error");
     }
   };
 
