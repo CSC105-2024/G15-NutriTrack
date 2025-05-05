@@ -1,4 +1,4 @@
-export type createUserBody = {
+export type CreateUserBody = {
   email: string;
   password: string;
   name: string;
