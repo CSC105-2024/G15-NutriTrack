@@ -1,10 +1,10 @@
 import type { Context } from "hono";
 import * as userModel from "../models/user.model.ts";
-import { createUserBody } from "../types/index.ts";
+import { CreateUserBody } from "../types/index.ts";
 
 const createUser = async (c: Context) => {
   try {
-    const body = await c.req.json<createUserBody>();
+    const body = await c.req.json<CreateUserBody>();
 
     const { name, email, password } = body;
     if (!name || !email || !password) {
