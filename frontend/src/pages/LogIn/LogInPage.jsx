@@ -14,10 +14,11 @@ import useDocumentTitle from "../../hooks/useDocumentTitle";
 import axios from "axios";
 import toast from "react-hot-toast";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const LogInPage = () => {
   useDocumentTitle("Log In");
   const navigate = useNavigate();
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   const loginSchema = z.object({
     email: z.string().email("Invalid email address"),
