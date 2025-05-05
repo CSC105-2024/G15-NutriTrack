@@ -3,6 +3,6 @@ import * as userController from "../controllers/user.controller.ts";
 
 const userRouter = new Hono();
 
-userRouter.post("/", userController.createUser);
+userRouter.post("/signup", userController.createUser);
 
 export { userRouter };

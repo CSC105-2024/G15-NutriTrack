@@ -3,6 +3,6 @@ import { userRouter } from "./user.route.ts";
 
 const mainRouter = new Hono();
 
-mainRouter.route("/signup", userRouter);
+mainRouter.route("/auth", userRouter);
 
 export { mainRouter };
