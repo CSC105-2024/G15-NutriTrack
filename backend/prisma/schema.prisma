@@ -26,14 +26,14 @@ model MealLog {
 }
 
 model DefaultFood {
-  id        String      @id @default(uuid())
-  name      String
-  calories  Int
-  protein   Float
-  fat       Float
-  carb      Float
-  mealType  MealType?
-  FoodEntry FoodEntry[]
+  id          String      @id @default(uuid())
+  name        String
+  calories    Int
+  protein     Float
+  fat         Float
+  carb        Float
+  mealType    MealType?
+  FoodEntries FoodEntry[]
 }
 
 model FoodEntry {
