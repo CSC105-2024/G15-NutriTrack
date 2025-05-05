@@ -14,4 +14,4 @@ const createUser = async (email: string, password: string, name: string) => {
   return user;
 };
 
-export { findByEmail as isDuplicate, createUser };
+export { findByEmail, createUser };
