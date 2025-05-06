@@ -1,11 +1,15 @@
-import React, { useState } from "react";
-import { foods } from "../../data/SampleData";
+import React, { useEffect, useState } from "react";
 import FoodDetailPopup from "../Dashboard/FoodDetailPopup";
 import FormInput from "@/components/FormInput";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const FoodGrid = () => {
   const [selectedFood, setSelectedFood] = useState(null);
+  const [foods, setFoods] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const handleCardClick = (food) => {
     setSelectedFood(food);
@@ -19,9 +23,30 @@ const FoodGrid = () => {
   const handleSearch = (e) => {
     const searchValue = e.target.value.toLowerCase();
     setSearchItems(
-      foods.filter((food) => food.name.toLowerCase().includes(searchValue))
+      foods.filter((food) => food.name.toLowerCase().includes(searchValue)),
     );
   };
+
+  useEffect(() => {
+    const fetchFoods = async () => {
+      try {
+        const res = await axios.get(`${API_BASE_URL}/api/foods`);
+        setFoods(res.data);
+      } catch (err) {
+        console.error("Failed to fetch foods:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFoods();
+  }, []);
+
+  useEffect(() => {
+    setSearchItems(foods);
+  }, [foods]);
+
+  if (loading) return <div className="text-center py-8">Loading foods...</div>;
 
   return (
     <div className="py-6">
