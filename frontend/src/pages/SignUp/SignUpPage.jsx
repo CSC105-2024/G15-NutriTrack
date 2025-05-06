@@ -1,17 +1,21 @@
 import React, { useState } from "react";
-import FormInput from "../../../components/FormInput";
+import axios from "axios";
 import {
   faUser,
   faEnvelope,
   faEye,
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
-import Button from "../../../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import useDocumentTitle from "../../../hooks/useDocumentTitle";
+import toast from "react-hot-toast";
+import Button from "@/components/Button";
+import useDocumentTitle from "@/hooks/useDocumentTitle";
+import FormInput from "@/components/FormInput";
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const SignUpPage = () => {
   useDocumentTitle("Register");
@@ -36,11 +40,26 @@ const SignUpPage = () => {
 
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     if (data.password !== data.confirmPassword) {
       setError("Passwords do not match!");
-    } else {
-      navigate("/login");
+      return;
+    }
+
+    try {
+      const res = await axios.post(`${API_BASE_URL}/auth/signup`, {
+        name: data.username,
+        email: data.email,
+        password: data.password,
+      });
+      if (res.data.success) {
+        toast.success("Account created successfully!");
+        navigate("/login");
+      } else {
+        setError(res.data.msg || "Signup failed");
+      }
+    } catch (err) {
+      setError(err.response?.data?.msg || "Server error");
     }
   };
 

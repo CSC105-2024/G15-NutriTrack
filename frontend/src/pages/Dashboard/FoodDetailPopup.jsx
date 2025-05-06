@@ -75,10 +75,7 @@ const FoodDetailPopup = ({ food, onClose }) => {
         </div>
 
         {/* Description */}
-        <p className="text-center text-lg mt-6">
-          {food.description ||
-            "A simple and delicious dish, perfect for any time of day."}
-        </p>
+        <p className="text-center text-lg mt-6">{food.description}</p>
 
         {/* Ingredients (only shown if expanded view) */}
         {food.showDetails && (

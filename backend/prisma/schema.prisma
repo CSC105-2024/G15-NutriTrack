@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String    @id @default(uuid())
+  email    String    @unique
+  name     String
+  password String
+  verified Boolean   @default(false)
+  mealLogs MealLog[]
+}
+
+model MealLog {
+  id      String      @id @default(uuid())
+  userId  String
+  user    User        @relation(fields: [userId], references: [id])
+  date    DateTime
+  type    MealType
+  entries FoodEntry[]
+}
+
+model DefaultFood {
+  id          String       @id @default(uuid())
+  name        String
+  calories    Int
+  protein     Float
+  fat         Float
+  carb        Float
+  mealType    MealType?
+  description String?
+  imgUrl      String?
+  preparation String?
+  showDetails Boolean      @default(false)
+  ingredients Ingredient[]
+  foodEntries FoodEntry[]
+}
+
+model Ingredient {
+  id            String      @id @default(uuid())
+  name          String
+  defaultFood   DefaultFood @relation(fields: [defaultFoodId], references: [id])
+  defaultFoodId String
+}
+
+model FoodEntry {
+  id            String      @id @default(uuid())
+  mealLogId     String
+  mealLog       MealLog     @relation(fields: [mealLogId], references: [id])
+  defaultFoodId String
+  defaultFood   DefaultFood @relation(fields: [defaultFoodId], references: [id])
+}
+
+enum MealType {
+  BREAKFAST
+  LUNCH
+  DINNER
+}

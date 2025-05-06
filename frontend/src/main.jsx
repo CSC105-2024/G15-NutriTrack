@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Import pages
 import LogInPage from "./pages/LogIn/LogInPage.jsx";
-import SignUpPage from "./pages/SignUp/components/SignUpPage.jsx";
+import SignUpPage from "./pages/SignUp/SignUpPage.jsx";
 import HomePage from "./pages/Home/HomePage.jsx";
 import DashboardPage from "./pages/Dashboard/DashboardPage.jsx";
 import AddFoodPage from "./pages/AddFood/AddFoodPage.jsx";
@@ -15,6 +15,7 @@ import DashboardLayout from "./components/DashboardLayout";
 import { MealPlanProvider } from "./components/MealPlanContext";
 import EditUserAccount from "./pages/UserAccount/EditUserAccount";
 import { ThemeProvider } from "./providers/ThemeProvider";
+import { Toaster } from "react-hot-toast";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,7 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ThemeProvider>
       <MealPlanProvider>
+        <Toaster position="top-right" />
         <RouterProvider router={router} />
       </MealPlanProvider>
     </ThemeProvider>
