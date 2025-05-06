@@ -4,9 +4,8 @@ import { CreateUserBody } from "../types/index.ts";
 
 const createUser = async (c: Context) => {
   try {
-    const body = await c.req.json<CreateUserBody>();
+    const { name, email, password } = await c.req.json<CreateUserBody>();
 
-    const { name, email, password } = body;
     if (!name || !email || !password) {
       return c.json(
         {
