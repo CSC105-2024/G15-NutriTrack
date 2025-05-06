@@ -1,5 +1,80 @@
 import db from "../src/lib/db.ts";
 
+const ingredientCategories: Record<string, string> = {
+  // Proteins
+  Shrimp: "Protein",
+  Chicken: "Protein",
+  Beef: "Protein",
+  Pork: "Protein",
+  Tofu: "Protein",
+  Eggs: "Protein",
+  "Fish fillets": "Protein",
+  "Whole fish": "Protein",
+  "Ground chicken": "Protein",
+
+  // Vegetables
+  "Bean sprouts": "Vegetable",
+  Mushrooms: "Vegetable",
+  "Bamboo shoots": "Vegetable",
+  Eggplant: "Vegetable",
+  "Green papaya": "Vegetable",
+  Tomatoes: "Vegetable",
+  Carrots: "Vegetable",
+  Onion: "Vegetable",
+  Shallots: "Vegetable",
+  "Chinese broccoli": "Vegetable",
+  "Green beans": "Vegetable",
+  "Green mango": "Vegetable",
+  "Pickled mustard greens": "Vegetable",
+
+  // Herbs & Spices
+  Lemongrass: "Herb/Spice",
+  "Kaffir lime leaves": "Herb/Spice",
+  Galangal: "Herb/Spice",
+  Chili: "Herb/Spice",
+  Garlic: "Herb/Spice",
+  "Thai basil": "Herb/Spice",
+  Basil: "Herb/Spice",
+  Coriander: "Herb/Spice",
+  Mint: "Herb/Spice",
+  "Lime leaves": "Herb/Spice",
+
+  // Sauces & Pastes
+  Tamarind: "Sauce/Paste",
+  "Fish sauce": "Sauce/Paste",
+  "Green curry paste": "Sauce/Paste",
+  "Massaman curry paste": "Sauce/Paste",
+  "Red curry paste": "Sauce/Paste",
+  "Curry paste": "Sauce/Paste",
+  "Soy sauce": "Sauce/Paste",
+  "Oyster sauce": "Sauce/Paste",
+
+  // Grains & Noodles
+  "Rice noodles": "Grain/Noodle",
+  "Sticky rice": "Grain/Noodle",
+  Rice: "Grain/Noodle",
+  "Egg noodles": "Grain/Noodle",
+
+  // Dairy & Alternatives
+  "Coconut milk": "Dairy/Alternative",
+  "Condensed milk": "Dairy/Alternative",
+
+  // Fruits
+  Lime: "Fruit",
+  Mango: "Fruit",
+
+  // Nuts & Seeds
+  Peanuts: "Nut/Seed",
+
+  // Sweeteners
+  Sugar: "Sweetener",
+
+  // Others
+  "Black tea": "Other",
+  Ice: "Other",
+  Salt: "Other",
+};
+
 const foods = [
   {
     name: "Pad Thai",
@@ -377,27 +452,53 @@ const foods = [
 ];
 
 async function main() {
-  for (const food of foods) {
-    const createdFood = await db.defaultFood.create({
-      data: {
-        name: food.name,
-        calories: food.calories,
-        protein: food.protein,
-        fat: food.fat,
-        carb: food.carb,
-        description: food.description,
-        imgUrl: food.imgUrl,
-        preparation: food.preparation,
-        showDetails: food.showDetails,
-      },
-    });
+  try {
+    // Cleanup existing data
+    await db.food.deleteMany({});
+    await db.ingredient.deleteMany({});
+    const allIngredientNames = [
+      ...new Set(foods.flatMap((f) => f.ingredients)),
+    ];
 
-    await db.ingredient.createMany({
-      data: food.ingredients.map((ingredient) => ({
-        name: ingredient,
-        defaultFoodId: createdFood.id,
-      })),
-    });
+    await db.$transaction([
+      ...allIngredientNames.map((name) =>
+        db.ingredient.upsert({
+          where: { name },
+          update: {},
+          create: {
+            name,
+            category: ingredientCategories[name] || "Other",
+          },
+        }),
+      ),
+    ]);
+
+    for (const food of foods) {
+      await db.food.create({
+        data: {
+          name: food.name,
+          calories: food.calories,
+          protein: food.protein,
+          fat: food.fat,
+          carb: food.carb,
+          description: food.description,
+          imgUrl: food.imgUrl,
+          preparation: food.preparation,
+          showDetails: food.showDetails,
+          ingredients: {
+            connect: food.ingredients.map((name) => ({
+              name,
+            })),
+          },
+        },
+      });
+    }
+
+    console.log("Database seeded successfully!");
+  } catch (error) {
+    console.error("Error seeding database:", error);
+  } finally {
+    await db.$disconnect();
   }
 }
 
