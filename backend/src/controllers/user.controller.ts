@@ -18,6 +18,8 @@ const createUser = async (c: Context) => {
       );
     }
 
+    const user = await userModel.findByEmail(email);
+
     if (user) {
       return c.json({
         success: false,
