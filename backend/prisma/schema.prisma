@@ -26,35 +26,34 @@ model MealLog {
   entries FoodEntry[]
 }
 
-model DefaultFood {
-  id          String       @id @default(uuid())
+model Food {
+  id          Int          @id @default(autoincrement())
   name        String
   calories    Int
   protein     Float
   fat         Float
   carb        Float
-  mealType    MealType?
   description String?
   imgUrl      String?
   preparation String?
   showDetails Boolean      @default(false)
-  ingredients Ingredient[]
-  foodEntries FoodEntry[]
+  ingredients Ingredient[] @relation("FoodIngredients")
+  FoodEntry   FoodEntry[]
 }
 
 model Ingredient {
-  id            String      @id @default(uuid())
-  name          String
-  defaultFood   DefaultFood @relation(fields: [defaultFoodId], references: [id])
-  defaultFoodId String
+  id       Int     @id @default(autoincrement())
+  name     String  @unique
+  category String?
+  foods    Food[]  @relation("FoodIngredients")
 }
 
 model FoodEntry {
-  id            String      @id @default(uuid())
+  id            String  @id @default(uuid())
   mealLogId     String
-  mealLog       MealLog     @relation(fields: [mealLogId], references: [id])
-  defaultFoodId String
-  defaultFood   DefaultFood @relation(fields: [defaultFoodId], references: [id])
+  mealLog       MealLog @relation(fields: [mealLogId], references: [id])
+  defaultFoodId Int
+  defaultFood   Food    @relation(fields: [defaultFoodId], references: [id])
 }
 
 enum MealType {
