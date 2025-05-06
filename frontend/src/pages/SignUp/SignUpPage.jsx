@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import FormInput from "../../../components/FormInput";
 import axios from "axios";
 import {
   faUser,
@@ -7,13 +6,14 @@ import {
   faEye,
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
-import Button from "../../../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import useDocumentTitle from "../../../hooks/useDocumentTitle";
 import toast from "react-hot-toast";
+import Button from "@/components/Button";
+import useDocumentTitle from "@/hooks/useDocumentTitle";
+import FormInput from "@/components/FormInput";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
