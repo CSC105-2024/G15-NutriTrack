@@ -453,6 +453,9 @@ const foods = [
 
 async function main() {
   try {
+    // Cleanup existing data
+    await db.food.deleteMany({});
+    await db.ingredient.deleteMany({});
     const allIngredientNames = [
       ...new Set(foods.flatMap((f) => f.ingredients)),
     ];
