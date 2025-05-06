@@ -27,14 +27,26 @@ model MealLog {
 }
 
 model DefaultFood {
-  id          String      @id @default(uuid())
+  id          String       @id @default(uuid())
   name        String
   calories    Int
   protein     Float
   fat         Float
   carb        Float
   mealType    MealType?
+  description String?
+  imgUrl      String?
+  preparation String?
+  showDetails Boolean      @default(false)
+  ingredients Ingredient[]
   foodEntries FoodEntry[]
+}
+
+model Ingredient {
+  id            String      @id @default(uuid())
+  name          String
+  defaultFood   DefaultFood @relation(fields: [defaultFoodId], references: [id])
+  defaultFoodId String
 }
 
 model FoodEntry {
