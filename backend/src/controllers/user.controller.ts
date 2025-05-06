@@ -7,8 +7,6 @@ const createUser = async (c: Context) => {
   try {
     const { name, email, password } = await c.req.json<CreateUserBody>();
 
-    const user = await userModel.findByEmail(email);
-
     if (!name || !email || !password) {
       return c.json(
         {
