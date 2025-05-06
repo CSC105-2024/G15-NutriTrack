@@ -1,6 +1,7 @@
 import type { Context } from "hono";
 import * as userModel from "../models/user.model.ts";
 import { CreateUserBody } from "../types/index.ts";
+import bcrypt from "bcryptjs";
 
 const createUser = async (c: Context) => {
   try {
@@ -17,7 +18,7 @@ const createUser = async (c: Context) => {
       );
     }
 
-    if (await userModel.findByEmail(email)) {
+    if (user) {
       return c.json({
         success: false,
         data: null,
@@ -27,11 +28,11 @@ const createUser = async (c: Context) => {
 
     const newUser = await userModel.createUser(email, password, name);
 
-    const { password: _, ...user } = newUser;
+    const { password: _, ...safeUser } = newUser;
 
     return c.json({
       success: true,
-      data: user,
+      data: safeUser,
       msg: "Created new user!",
     });
   } catch (e) {
@@ -51,7 +52,20 @@ const loginUser = async (c: Context) => {
     const { email, password } = await c.req.json();
     const user = await userModel.findByEmail(email);
 
-    if (!user || user.password !== password) {
+    if (!user) {
+      return c.json(
+        {
+          success: false,
+          data: null,
+          msg: "Email doesn't exist",
+        },
+        401,
+      );
+    }
+
+    const checkPassword = await bcrypt.compare(password, user.password);
+
+    if (!checkPassword) {
       return c.json(
         {
           success: false,
