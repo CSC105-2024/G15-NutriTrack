@@ -5,6 +5,10 @@ import useDocumentTitle from "../../hooks/useDocumentTitle";
 import CalendarPopup from "@/components/CalendarPopup";
 import Button from "@/components/Button";
 import { useMealPlans } from "@/components/MealPlanContext";
+import axios from "axios";
+import toast from "react-hot-toast";
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const AddFoodPage = () => {
   useDocumentTitle("Add Food");
@@ -13,11 +17,40 @@ const AddFoodPage = () => {
 
   const [showFoodSelector, setShowFoodSelector] = useState(false);
   const [currentMealType, setCurrentMealType] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const dateKey = selectedDate ? format(selectedDate, "yyyy-MM-dd") : "";
+  // test user
+  const userId = "65eb01d3-5413-4002-b5e7-d63ecf486e00";
 
   useEffect(() => {
-    if (dateKey && !mealPlans[dateKey]) {
+    if (dateKey) {
+      fetchMealPlans();
+    }
+  }, [dateKey]);
+
+  const fetchMealPlans = async () => {
+    if (!dateKey) return;
+
+    setLoading(true);
+    try {
+      const { data } = await axios.get(`${API_BASE_URL}/meals/plans`, {
+        params: {
+          userId,
+          date: new Date(dateKey),
+        },
+      });
+
+      if (data.success) {
+        setMealPlans((prev) => ({
+          ...prev,
+          [dateKey]: data.data,
+        }));
+      }
+    } catch (error) {
+      console.error("Error fetching meal plans:", error);
+      toast.error("Failed to load meal plans");
+
       setMealPlans((prev) => ({
         ...prev,
         [dateKey]: {
@@ -26,13 +59,9 @@ const AddFoodPage = () => {
           dinner: [],
         },
       }));
+    } finally {
+      setLoading(false);
     }
-  }, [dateKey, mealPlans]);
-
-  const currentMealPlan = mealPlans[dateKey] || {
-    breakfast: [],
-    lunch: [],
-    dinner: [],
   };
 
   const handleAddFood = (mealType) => {
@@ -40,21 +69,39 @@ const AddFoodPage = () => {
     setShowFoodSelector(true);
   };
 
-  const addFoodToMeal = (food) => {
+  const addFoodToMeal = async (food) => {
     if (!currentMealType || !dateKey) return;
 
-    setMealPlans((prev) => ({
-      ...prev,
-      [dateKey]: {
-        ...prev[dateKey],
-        [currentMealType]: [...(prev[dateKey]?.[currentMealType] || []), food],
-      },
-    }));
+    try {
+      const res = await axios.post(`${API_BASE_URL}/meals/addfood`, {
+        userId,
+        date: new Date(dateKey),
+        type: currentMealType.toUpperCase(),
+        foodId: food.id,
+      });
 
+      if (res.data.success) {
+        setMealPlans((prev) => ({
+          ...prev,
+          [dateKey]: {
+            ...prev[dateKey],
+            [currentMealType]: [
+              ...(prev[dateKey]?.[currentMealType] || []),
+              food,
+            ],
+          },
+        }));
+
+        toast.success("Added food!");
+      }
+    } catch (err) {
+      console.error("Error adding food to meal:", err);
+      toast.error("Failed to add food");
+    }
     setShowFoodSelector(false);
   };
 
-  const removeFood = (mealType, foodIndex) => {
+  const removeFood = async (mealType, foodIndex, foodId) => {
     if (!dateKey) return;
 
     setMealPlans((prev) => {
@@ -63,16 +110,25 @@ const AddFoodPage = () => {
         [dateKey]: {
           ...prev[dateKey],
           [mealType]: prev[dateKey][mealType].filter(
-            (_, index) => index !== foodIndex
+            (_, index) => index !== foodIndex,
           ),
         },
       };
+
       return newMealPlan;
     });
+
+    // TODO: backend endpoint for deleting
   };
 
   const calculateTotalCalories = (foods) => {
-    return foods.reduce((total, food) => total + food.calories, 0);
+    return foods.reduce((total, food) => total + (food.calories || 0), 0);
+  };
+
+  const currentMealPlan = mealPlans[dateKey] || {
+    breakfast: [],
+    lunch: [],
+    dinner: [],
   };
 
   return (
@@ -84,8 +140,13 @@ const AddFoodPage = () => {
         <CalendarPopup date={selectedDate} setDate={setSelectedDate} />
       </div>
 
+      {/* Loading State */}
+      {loading && (
+        <p className="text-center text-gray-600">Loading meal plans...</p>
+      )}
+
       {/* Meal Cards */}
-      {dateKey && (
+      {dateKey && !loading && (
         <div className="space-y-6">
           {["breakfast", "lunch", "dinner"].map((mealType) => (
             <div
@@ -100,7 +161,7 @@ const AddFoodPage = () => {
                 {calculateTotalCalories(currentMealPlan[mealType])}
               </p>
 
-              {currentMealPlan[mealType].length > 0 && (
+              {currentMealPlan[mealType]?.length > 0 && (
                 <div className="mt-4 space-y-2">
                   {currentMealPlan[mealType].map((food, index) => (
                     <div
@@ -109,9 +170,9 @@ const AddFoodPage = () => {
                     >
                       <span>{food.name}</span>
                       <div className="flex items-center">
-                        <span className="mr-3">{food.calories} kcal</span>
+                        <span className="mr-3">{food.calories || 0} kcal</span>
                         <Button
-                          onClick={() => removeFood(mealType, index)}
+                          onClick={() => removeFood(mealType, index, food.id)}
                           text={"Remove"}
                           variant="secondary"
                           className="ml-2 bg-red-500 hover:bg-red-600 text-white"
