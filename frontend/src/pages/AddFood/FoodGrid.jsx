@@ -1,11 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
-import { foods } from "../../data/SampleData";
 import FormInput from "@/components/FormInput";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import FoodDetailPopup from "./FoodDetailPopup";
-import Button from "@/components/Button";
+import axios from "axios";
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const FoodGrid = ({ onSelectFood = null, mealType = null }) => {
+  const [foods, setFoods] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [selectedFood, setSelectedFood] = useState(null);
 
   const handleCardClick = (food) => {
@@ -16,11 +19,30 @@ const FoodGrid = ({ onSelectFood = null, mealType = null }) => {
     setSelectedFood(null);
   };
 
+  useEffect(() => {
+    const fetchFoods = async () => {
+      try {
+        const res = await axios.get(`${API_BASE_URL}/api/foods`);
+        setFoods(res.data);
+      } catch (err) {
+        console.error("Failed to fetch foods:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFoods();
+  }, []);
+
+  useEffect(() => {
+    setSearchItems(foods);
+  }, [foods]);
+
   const [searchItems, setSearchItems] = useState(foods);
   const handleSearch = (e) => {
     const searchValue = e.target.value.toLowerCase();
     setSearchItems(
-      foods.filter((food) => food.name.toLowerCase().includes(searchValue))
+      foods.filter((food) => food.name.toLowerCase().includes(searchValue)),
     );
   };
 

@@ -21,7 +21,7 @@ model MealLog {
   id      String      @id @default(uuid())
   userId  String
   user    User        @relation(fields: [userId], references: [id])
-  date    DateTime
+  date    DateTime    @default(now())
   type    MealType
   entries FoodEntry[]
 }
@@ -49,11 +49,11 @@ model Ingredient {
 }
 
 model FoodEntry {
-  id            String  @id @default(uuid())
-  mealLogId     String
-  mealLog       MealLog @relation(fields: [mealLogId], references: [id])
-  defaultFoodId Int
-  defaultFood   Food    @relation(fields: [defaultFoodId], references: [id])
+  id        String  @id @default(uuid())
+  mealLogId String
+  mealLog   MealLog @relation(fields: [mealLogId], references: [id])
+  foodId    Int
+  food      Food    @relation(fields: [foodId], references: [id])
 }
 
 enum MealType {

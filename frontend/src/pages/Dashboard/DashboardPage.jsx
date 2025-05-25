@@ -156,7 +156,7 @@ const DashboardPage = () => {
     // Find the highest calorie value
     const maxCalorieEntry = dataWithCalories.reduce(
       (max, entry) => (entry.calories > max.calories ? entry : max),
-      { calories: 0 }
+      { calories: 0 },
     );
 
     // Set the fill color based on whether it's today or the highest calorie day
@@ -166,8 +166,8 @@ const DashboardPage = () => {
       fill: entry.isToday
         ? "#4ECDC4"
         : entry.calories === maxCalorieEntry.calories
-        ? "#FF6B6B" // Highlight the highest calorie bar
-        : "#F4D35E", // Default color
+          ? "#FF6B6B" // Highlight the highest calorie bar
+          : "#F4D35E", // Default color
     }));
   };
 
