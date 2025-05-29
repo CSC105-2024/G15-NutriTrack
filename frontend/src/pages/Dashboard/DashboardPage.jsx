@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   format,
   startOfWeek,
@@ -156,7 +156,7 @@ const DashboardPage = () => {
     // Find the highest calorie value
     const maxCalorieEntry = dataWithCalories.reduce(
       (max, entry) => (entry.calories > max.calories ? entry : max),
-      { calories: 0 },
+      { calories: 0 }
     );
 
     // Set the fill color based on whether it's today or the highest calorie day
@@ -166,8 +166,8 @@ const DashboardPage = () => {
       fill: entry.isToday
         ? "#4ECDC4"
         : entry.calories === maxCalorieEntry.calories
-          ? "#FF6B6B" // Highlight the highest calorie bar
-          : "#F4D35E", // Default color
+        ? "#FF6B6B" // Highlight the highest calorie bar
+        : "#F4D35E", // Default color
     }));
   };
 
@@ -200,6 +200,29 @@ const DashboardPage = () => {
     }
     return null;
   };
+
+  useEffect(() => {
+    const fetchMealPlans = async () => {
+      try {
+        const userId = "";
+        const formattedDate = format(selectedDate, "yyyy-MM-dd");
+        const response = await axios.get(
+          `${API_BASE_URL}/meals/plans?userId=${userId}&date=${formattedDate}`
+        );
+
+        if (response.data.success) {
+          setMealPlans((prevPlans) => ({
+            ...prevPlans,
+            [formattedDate]: response.data.data,
+          }));
+        }
+      } catch (error) {
+        console.error("Error fetching meal plans:", error);
+      }
+    };
+
+    fetchMealPlans();
+  }, [selectedDate]);
 
   return (
     <div className="container mx-auto py-8 px-4">
