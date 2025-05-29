@@ -5,9 +5,8 @@ const addFoodToLog = async (
   userId: string,
   date: string,
   type: $Enums.MealType,
-  foodId: number
+  foodId: number,
 ) => {
-  // First try to find existing meal log
   let mealLog = await db.mealLog.findFirst({
     where: {
       userId,
@@ -16,7 +15,6 @@ const addFoodToLog = async (
     },
   });
 
-  // If no meal log exists, create a new one
   if (!mealLog) {
     mealLog = await db.mealLog.create({
       data: {
@@ -27,7 +25,6 @@ const addFoodToLog = async (
     });
   }
 
-  // Create the food entry
   await db.foodEntry.create({
     data: {
       mealLogId: mealLog.id,
@@ -76,7 +73,7 @@ const removeFoodFromLog = async (
   userId: string,
   date: string,
   type: $Enums.MealType,
-  foodId: number
+  foodId: number,
 ) => {
   // Find the meal log for the given user, date, and meal type
   const mealLog = await db.mealLog.findFirst({
