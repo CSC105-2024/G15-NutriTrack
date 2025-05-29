@@ -31,10 +31,13 @@ import FoodDetailPopup from "./FoodDetailPopup";
 import Footer from "../Home/sections/Footer";
 import axios from "axios";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const DashboardPage = () => {
   useDocumentTitle("Dashboard");
 
-  const { mealPlans, selectedDate, setSelectedDate } = useMealPlans();
+  const { mealPlans, setMealPlans, selectedDate, setSelectedDate } =
+    useMealPlans();
   const [selectedFood, setSelectedFood] = useState(null);
 
   // State for date range selectors
@@ -157,7 +160,7 @@ const DashboardPage = () => {
     // Find the highest calorie value
     const maxCalorieEntry = dataWithCalories.reduce(
       (max, entry) => (entry.calories > max.calories ? entry : max),
-      { calories: 0 }
+      { calories: 0 },
     );
 
     // Set the fill color based on whether it's today or the highest calorie day
@@ -167,8 +170,8 @@ const DashboardPage = () => {
       fill: entry.isToday
         ? "#4ECDC4"
         : entry.calories === maxCalorieEntry.calories
-        ? "#FF6B6B" // Highlight the highest calorie bar
-        : "#F4D35E", // Default color
+          ? "#FF6B6B" // Highlight the highest calorie bar
+          : "#F4D35E", // Default color
     }));
   };
 
@@ -208,7 +211,7 @@ const DashboardPage = () => {
         const userId = "";
         const formattedDate = format(selectedDate, "yyyy-MM-dd");
         const response = await axios.get(
-          `${API_BASE_URL}/meals/plans?userId=${userId}&date=${formattedDate}`
+          `${API_BASE_URL}/meals/plans?userId=${userId}&date=${formattedDate}`,
         );
 
         if (response.data.success) {
