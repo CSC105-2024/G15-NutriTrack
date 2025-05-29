@@ -21,7 +21,7 @@ const AddFoodPage = () => {
 
   const dateKey = selectedDate ? format(selectedDate, "yyyy-MM-dd") : "";
   // test user
-  const userId = "65eb01d3-5413-4002-b5e7-d63ecf486e00";
+  const userId = "0f5e454a-b4ce-4e24-a9a9-a10ca2354c62";
 
   useEffect(() => {
     if (dateKey) {
@@ -104,21 +104,42 @@ const AddFoodPage = () => {
   const removeFood = async (mealType, foodIndex, foodId) => {
     if (!dateKey) return;
 
-    setMealPlans((prev) => {
-      const newMealPlan = {
-        ...prev,
-        [dateKey]: {
-          ...prev[dateKey],
-          [mealType]: prev[dateKey][mealType].filter(
-            (_, index) => index !== foodIndex,
-          ),
-        },
-      };
+    try {
+      // Optimistically update UI first for better user experience
+      setMealPlans((prev) => {
+        const newMealPlan = {
+          ...prev,
+          [dateKey]: {
+            ...prev[dateKey],
+            [mealType]: prev[dateKey][mealType].filter(
+              (_, index) => index !== foodIndex,
+            ),
+          },
+        };
 
-      return newMealPlan;
-    });
+        return newMealPlan;
+      });
 
-    // TODO: backend endpoint for deleting
+      const res = await axios.post(`${API_BASE_URL}/meals/removefood`, {
+        userId,
+        date: new Date(dateKey),
+        type: mealType.toUpperCase(),
+        foodId,
+      });
+
+      if (res.data.success) {
+        toast.success("Removed food!");
+      } else {
+        // If the backend operation fails, revert the UI change by refetching
+        toast.error(res.data.error || "Failed to remove food");
+        fetchMealPlans();
+      }
+    } catch (err) {
+      console.error("Error removing food from meal:", err);
+      toast.error("Failed to remove food");
+      // Revert UI by refetching data
+      fetchMealPlans();
+    }
   };
 
   const calculateTotalCalories = (foods) => {

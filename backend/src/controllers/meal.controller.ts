@@ -8,7 +8,7 @@ const getMealPlans = async (c: Context) => {
     if (!userId || !date) {
       return c.json(
         { error: "Missing required parameters: userId and date" },
-        400,
+        400
       );
     }
 
@@ -38,4 +38,34 @@ const addFoodToLog = async (c: Context) => {
   }
 };
 
-export { getMealPlans, addFoodToLog };
+const removeFoodFromLog = async (c: Context) => {
+  try {
+    const { userId, date, type, foodId } = await c.req.json();
+    const result = await mealModel.removeFoodFromLog(
+      userId,
+      date,
+      type,
+      foodId
+    );
+
+    if (!result.success) {
+      return c.json(
+        {
+          success: false,
+          error: result.error,
+        },
+        404
+      );
+    }
+
+    return c.json({
+      success: true,
+      msg: "Removed food from meal",
+    });
+  } catch (err) {
+    console.error("Error removing food from meal:", err);
+    return c.json({ error: "Internal Server Error" }, 500);
+  }
+};
+
+export { getMealPlans, addFoodToLog, removeFoodFromLog };
