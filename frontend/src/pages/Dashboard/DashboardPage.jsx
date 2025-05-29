@@ -29,6 +29,7 @@ import useDocumentTitle from "@/hooks/useDocumentTitle";
 import { useMealPlans } from "@/components/MealPlanContext";
 import FoodDetailPopup from "./FoodDetailPopup";
 import Footer from "../Home/sections/Footer";
+import axios from "axios";
 
 const DashboardPage = () => {
   useDocumentTitle("Dashboard");
